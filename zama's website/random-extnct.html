@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extinct Animals</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        #fetchButton {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            color: #fff;
+            background-color: #90d4e1;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease;
+        }
+        #fetchButton:hover {
+            background-color: #0056b3;
+        }
+        #animalsContainer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .animal-card {
+            flex: 1 1 calc(33.333% - 20px);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .animal-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        .animal-card img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .animal-card h3 {
+            margin: 10px 0;
+            font-size: 20px;
+            color: #333;
+        }
+        .animal-card p {
+            font-size: 16px;
+            color: #555;
+        }
+        @media (max-width: 768px) {
+            .animal-card {
+                flex: 1 1 calc(50% - 20px);
+            }
+        }
+        @media (max-width: 480px) {
+            .animal-card {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Extinct Animals</h1>
+        <button id="fetchButton">Show Extinct Animals</button>
+        <div id="animalsContainer"></div>
+    </div>
+    <script>
+function fetchExtinctAnimals() {
+    var numberOfAnimals = 5; // Specify the number of animals you want to fetch
+    var request = new XMLHttpRequest();
+    var url = `https://extinct-api.herokuapp.com/api/v1/animal/${numberOfAnimals}`;
+
+    request.open('GET', url);
+    request.setRequestHeader('Accept', '*/*');
+
+    request.onload = function () {
+        if (this.status >= 200 && this.status < 400) {
+            var response = JSON.parse(this.responseText);
+            
+            if (response.data && Array.isArray(response.data)) {
+                displayAnimals(response.data); // Call function to display animals
+            } else {
+                console.error('Unexpected response format:', response);
+            }
+        } else {
+            console.error('Request failed with status:', this.status);
+        }
+    };
+
+    request.onerror = function () {
+        console.error('Request error');
+    };
+
+    request.send();
+}
+
+function displayAnimals(animals) {
+    const container = document.getElementById('animalsContainer');
+    container.innerHTML = ''; 
+
+    animals.forEach(animal => {
+        const animalDiv = document.createElement('div');
+        animalDiv.classList.add('animal-card');
+
+        const name = document.createElement('h3');
+        name.textContent = animal.commonName || 'Unknown Name';
+
+        const image = document.createElement('img');
+        image.src = animal.imageSrc || 'https://via.placeholder.com/220';
+        image.alt = animal.commonName || 'Image not available';
+
+        const description = document.createElement('p');
+        description.textContent = animal.shortDesc || 'No description available.';
+
+        animalDiv.appendChild(name);
+        animalDiv.appendChild(image);
+        animalDiv.appendChild(description);
+
+        container.appendChild(animalDiv);
+    });
+}
+
+function handleButtonClick() {
+    fetchExtinctAnimals();
+}
+
+document.getElementById('fetchButton').addEventListener('click', handleButtonClick);
+
+    </script>
+</body>
+</html>

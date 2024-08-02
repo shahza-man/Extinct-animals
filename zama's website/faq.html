@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Frequently Asked Questions About Extinct Animals</h1>
+    <div class="sec-2">        <div class="box">
+            <h5>What does it mean for an animal to be extinct?</h5>
+            <div class="answer">
+                <p>An animal is considered extinct when there are no known surviving individuals of that species in the wild or in captivity.</p>
+            </div>
+        </div>
+        <div class="box">
+            <h5>What causes animal extinction?</h5>
+            <div class="answer">
+                <p>Common causes of extinction include habitat destruction, climate change, pollution, overhunting, and invasive species.</p>
+            </div>
+        </div>
+        <div class="box">
+            <h5>Extinct Animals: Your Questions Answered</h5>
+            <div class="answer">
+                <p>Extinct animals were once part of Earth's biodiversity but have disappeared due to various reasons.</p>
+            </div>
+        </div>
+        <div class="box">
+            <h5>How can we prevent animal extinctions?</h5>
+            <div class="answer">
+                <p>Prevention involves habitat conservation, addressing climate change, enforcing wildlife protection laws, and reducing human impact on ecosystems.</p>
+            </div>
+        </div>
+        <div class="box">
+            <h5>What are some examples of extinct animals?
+
+            </h5>
+            <div class="answer">
+                <p>Notable examples include the dodo, woolly mammoth, saber-toothed cat, and passenger pigeon.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<style>
+.sec-2 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+
+.sec-2 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+.box {
+    background-color: #ffffff;
+    color: #333;
+    padding: 20px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 350px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s, transform 0.3s;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.box:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    transform: translateY(-6px);
+    cursor: pointer;
+}
+
+.box h5 {
+    margin: 0;
+    font-size: 18px;
+    color: #2d88e2;
+    transition: color 0.3s;
+}
+
+.box:hover h5 {
+    color: #333;
+}
+
+.answer {
+    display: none;
+    margin-top: 10px;
+    background-color: #f0f0f0;
+    color: #555;
+    padding: 15px;
+    border-radius: 8px;
+    transition: opacity 0.3s, transform 0.3s;
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+
+
+.box:hover .answer {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h1{
+    font-weight: normal;
+    text-align: center;
+}
+h5{
+    font-weight: normal;
+}
+body{
+    background-color: bisque;
+}
+</style>
